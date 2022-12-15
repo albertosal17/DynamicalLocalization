@@ -177,10 +177,10 @@ qc.measure(range(n), range(n))
 
 
 #disegno il circuito
-qc.draw(output="mpl")
-plt.show()
+#qc.draw(output="mpl")
+#plt.show()
 
-
+"""
 #Simulo il circuito
 backend = AerSimulator() #inizializzo un particolare simulatore
 
@@ -191,8 +191,32 @@ job_sim = backend.run(qc_compiled, shots=8192) #testa il circuito 8192 volte e s
 result_sim = job_sim.result()
 
 counts = result_sim.get_counts(qc_compiled)
+"""
 
+
+
+IBMQ.save_account('462e6d7d6fe63fa68d13bffbbddc7e673292bb1889272402beb48bb71f9fc963b66098ce6e2fa3d16153e069a34e1112eb22f6a1f91cea115be969ea7be4ac6d', overwrite=True)
+
+
+provider = IBMQ.load_account()
+
+
+backend = provider.get_backend('ibmq_lima')
+
+qc_compiled = transpile(qc, backend) #compilo il circuito
+
+job_sim = backend.run(qc_compiled, shots=8192) #testa il circuito 8192 volte e salva i risultati delle misure sui bit classiciù
+
+
+result_sim = job_sim.result()
+
+counts = result_sim.get_counts()
 
 #mostro i risultati
 plot_histogram(counts)
 plt.show()
+
+#backends disponibili
+backends = provider.backends()
+
+print(backends)
