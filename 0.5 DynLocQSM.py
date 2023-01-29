@@ -212,7 +212,7 @@ def simulation(backendKeyword, iter_list, shots):
 
             from qiskit import IBMQ
             #tokenUSC
-            IBMQ.enable_account('df77ce8fbc3c2ca8fabd89e18f52496647559be8ef2d1d88fdbe6f8eb55ae143e92912be4a8cfb35ead3c1ca38edf982fbd5dd98e4afea404d4edd4b10908772') #If you do not have your account saved and do not want to save it
+            IBMQ.enable_account('') #If you do not have your account saved and do not want to save it
             IBMQ.providers()    # List all available providers
             # Replace YOUR_HUB, YOUR_GROUP, and YOUR_PROJECT with the actual values for your provider
             provider = IBMQ.get_provider(hub='ibm-q-research', group='uni-south-cali-1', project='main')
